@@ -11,3 +11,5 @@ You can call it as :
 with gdf a geopandas GeoDataFrame, with a valid geometry column, and with column_name a valid column name within the geo data frame (numerical or that can be converted to numerical).
 
 
+![alt tag](https://raw.githubusercontent.com/fedhere/choroplathNYC/master/NYCpopzip.png)
+![alt tag](https://raw.githubusercontent.com/fedhere/choroplathNYC/master/NYCcountyzip.png)
