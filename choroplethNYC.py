@@ -109,7 +109,7 @@ def choroplethNYC(df, column=None, cmap='viridis', ax=None,
 
 
 if __name__ == '__main__':
-    parser = optparse.OptionParser(usage="choroplathNYC <path to shapefile> ", conflict_handler="resolve")
+    parser = optparse.OptionParser(usage="choroplathNYC <path to shapefile> <column>", conflict_handler="resolve")
     parser.add_option('-d', '--discrete', default=False, action="store_true",
 	                      help='discrete steps color bar')
     parser.add_option('-m', '--cmap', default='viridis', type='string',
@@ -123,8 +123,6 @@ if __name__ == '__main__':
 	                      help='''clobber output file''')
     parser.add_option('--noshow', default=False, action="store_true",
 	                      help='do not show figure (default)')
-    parser.add_option('--noshow', default=False, action="store_true",
-	                      help='do not show figure (default)')
     parser.add_option('--debug', default=False, action="store_true",
 	                      help='print debug statements')
 
@@ -134,6 +132,7 @@ if __name__ == '__main__':
         DEBUG = True
     if DEBUG:
         print (options)
+        print (args)
     
     if len(args) == 0:
         options, args = parser.parse_args(args=['--help'])
@@ -158,7 +157,7 @@ if __name__ == '__main__':
                 print ("the requested column cannot be converted to nuerical values. Available columns:",
             gdf.columns)
                 sys.exit()
-            fig, ax = choroplethNYC(gdf, args[1], cmap=options.cmap,
+            fig, ax, cb = choroplethNYC(gdf, args[1], cmap=options.cmap,
                                     kind=kind)
         else:
             print ("column", args[1], "not in file. Available columns:",
