@@ -12,9 +12,9 @@ DEBUG = False
 
 #for python 2/3 compatibility
 try:
-    input = raw_input
+    rawinput = raw_input
 except NameError:
-    pass
+    rawinput = input
 
 def discrete_cmap(N, base_cmap=None):
     '''Create an N-bin discrete colormap from the specified input map
@@ -172,7 +172,7 @@ if __name__ == '__main__':
         
     if not options.output is None:
         if os.path.isfile(options.output) and not options.clobber:
-            answer = input("file exists, really replace? (Y/n)\n")
+            answer = rawinput("file exists, really replace? (Y/n)\n")
             if (answer.startswith('Y') or answer.startswith('y') or
                 answer.startswith('')):
                 fig.savefig(options.output, clobber=True)
