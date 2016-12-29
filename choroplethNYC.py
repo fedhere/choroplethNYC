@@ -1,7 +1,6 @@
 from __future__ import print_function, division
 import os
 import sys
-import pandas as pd
 import geopandas as gpd
 import pylab as pl
 import optparse
@@ -10,11 +9,12 @@ import numpy as np
 
 DEBUG = True
 DEBUG = False
+
 #for python 2/3 compatibility
 try:
-   input = raw_input
+    input = raw_input
 except NameError:
-   pass
+    pass
 
 def discrete_cmap(N, base_cmap=None):
     '''Create an N-bin discrete colormap from the specified input map
@@ -36,7 +36,7 @@ def discrete_cmap(N, base_cmap=None):
 
 def choroplethNYC(df, column=None, cmap='viridis', ax=None,
                   cb=True, kind='continuous',
-                  spacing=False, lw=1, width=None, side=False, loc=1):
+                  spacing=False, lw=1, width=None, side=False):
     '''creates a choropleth from a dataframe column - NYC tuned
     Arguments:
     df : a GeoDataFrame
