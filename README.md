@@ -18,3 +18,7 @@ with optional arguments that include the colormap, whether the color bar should 
 
 ![alt tag](https://raw.githubusercontent.com/fedhere/choroplathNYC/master/NYCpopzip.png)
 ![alt tag](https://raw.githubusercontent.com/fedhere/choroplathNYC/master/NYCcountyzip.png)
+
+and finally without the color bar, since here the colors do not actually mean anything: NYC park properties
+
+![alt tag](https://raw.githubusercontent.com/fedhere/choroplathNYC/master/NYCparks.png)
