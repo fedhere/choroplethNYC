@@ -1,4 +1,4 @@
-# choroplathNYC
+# choroplethNYC
 A function to make a choroplath of NYC from a shapefile data. The colorbar location is tuned to the shape of NYC (although it can be modified) and enabled both continuous and discrete color bars.
 
 
@@ -18,3 +18,7 @@ with optional arguments that include the colormap, whether the color bar should 
 
 ![alt tag](https://raw.githubusercontent.com/fedhere/choroplathNYC/master/NYCpopzip.png)
 ![alt tag](https://raw.githubusercontent.com/fedhere/choroplathNYC/master/NYCcountyzip.png)
+
+and finally without the color bar, since here the colors do not actually mean anything: NYC park properties
+
+![alt tag](https://raw.githubusercontent.com/fedhere/choroplathNYC/master/NYCparks.png)
