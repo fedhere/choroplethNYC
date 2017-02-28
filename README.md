@@ -21,4 +21,4 @@ with optional arguments that include the colormap, whether the color bar should 
 
 and finally without the color bar, since here the colors do not actually mean anything: NYC park properties
 
-![alt tag](https://raw.githubusercontent.com/fedhere/choroplathNYC/master/NYCparks.png)
+![alt tag](https://raw.githubusercontent.com/fedhere/choroplethNYC/master/NYCparks.png)
