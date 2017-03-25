@@ -35,9 +35,9 @@ def discrete_cmap(N, base_cmap=None):
 
 
 def choroplethNYC(df, column=None, cmap='viridis', ax=None,
-                  cb=True, kind='continuous',
+                  cb=True, kind='continuous', alpha=1, color=None,
                   spacing=False, lw=1, width=None, side=False):
-    '''creates a choropleth from a dataframe column - NYC tuned
+    '''creates a choroplath from a dataframe column - NYC tuned
     Arguments:
     df : a GeoDataFrame
     column : a column name 
@@ -54,11 +54,19 @@ def choroplethNYC(df, column=None, cmap='viridis', ax=None,
     if ax == None:
         ax = pl.figure(figsize=(10, 10)).add_subplot(111)
     if column == None:
-        ax = df.plot(cmap=cmap, alpha=1, ax=ax, linewidth=lw)
+        ax = df.plot(cmap=cmap, alpha=alpha, ax=ax, linewidth=lw)
     else:
+        if kind == 'continuous' and not isinstance(df[column].values[0], (int, long, float)):
+            try:
+                df[column] =  df[column].astype(float)
+                df[column].replace(np.inf, np.nan, inplace=True)
+            except ValueError:
+                kind = 'discrete'
+                
         ax = df.dropna(subset=[column]).plot(column=column,
-                                             cmap=cmap, alpha=1, ax=ax,
+                                             cmap=cmap, alpha=alpha, ax=ax,
                                              linewidth=lw)
+
         vmin, vmax = min(df[column].values), max(df[column].values)
     ax.axis('off')
     fig = ax.get_figure()
