@@ -35,8 +35,8 @@ def discrete_cmap(N, base_cmap=None):
 
 
 def choroplethNYC(df, column=None, cmap='viridis', ax=None,
-                  cb=True, kind='continuous', alpha=1, color=None,
-                  spacing=False, lw=1, width=None, side=False):
+                  cb=True, kind='continuous', alpha=1, color=None, edgecolor=None,
+                  scheme=None, k=10, spacing=False, lw=1, width=None, side=False):
     '''creates a choroplath from a dataframe column - NYC tuned
     Arguments:
     df : a GeoDataFrame
@@ -54,16 +54,32 @@ def choroplethNYC(df, column=None, cmap='viridis', ax=None,
     if ax == None:
         ax = pl.figure(figsize=(10, 10)).add_subplot(111)
     if column == None:
-        ax = df.plot(cmap=cmap, alpha=alpha, ax=ax, linewidth=lw)
+        if color == None:
+            ax = df.plot(cmap=cmap, alpha=alpha, ax=ax, linewidth=lw)
+        else:
+            ax = df.plot(alpha=alpha, ax=ax, linewidth=lw, color=color, edgecolor=edgecolor)
+    elif not scheme == None:
+        ax = df.plot(column=column, edgecolor=edgecolor,
+                     cmap=cmap, alpha=alpha, ax=ax,
+                     linewidth=lw, scheme=scheme, k=k, legend=True)
+ 
+        pl.legend(loc=2)
+        ax.axis('off')
+        leg = ax.get_legend()
+        #pl.legend(bbox_to_anchor=(2, 2), loc=2, borderaxespad=0)
+        leg.set_bbox_to_anchor((0.35, 0.95, 0, 0))
+
+        fig = ax.get_figure()
+        return None, ax, leg                     
     else:
-        if kind == 'continuous' and not isinstance(df[column].values[0], (int, long, float)):
+        if kind == 'continuous' and not isinstance(df[column].values[0], (int, float)):
             try:
                 df[column] =  df[column].astype(float)
                 df[column].replace(np.inf, np.nan, inplace=True)
             except ValueError:
                 kind = 'discrete'
-                
-        ax = df.dropna(subset=[column]).plot(column=column,
+      
+        ax = df.dropna(subset=[column]).plot(column=column, edgecolor=edgecolor,
                                              cmap=cmap, alpha=alpha, ax=ax,
                                              linewidth=lw)
 
