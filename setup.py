@@ -9,4 +9,7 @@ setup(name='choroplethNYC',
       author_email='fbianco@nyu.edu',
       url='https://github.com/fedhere/choroplethNYC/',
       py_modules=['choroplethNYC'],
+      install_requires=['matplotlib',
+                        'numpy',
+                        'geopandas']
      )
